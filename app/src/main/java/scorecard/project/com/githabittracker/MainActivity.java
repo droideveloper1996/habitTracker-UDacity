@@ -50,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         long row = db.insert(HabitEntry.TABLE_NAME, null, values);
-        if(row==-1)
-        {
+        if (row == -1) {
             Log.i("Error Occured", "in");
         }
 
@@ -59,26 +58,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayDatabaseInfo() {
 
-        SQLiteDatabase db = mHabitHelper.getWritableDatabase();
-
-        String[] projection = {HabitEntry._ID,HabitEntry.MORNING_EXERCISE,
-                HabitEntry.MEDITATION,
-                HabitEntry.GLASS_OF_WATER,
-                HabitEntry.CUPS_OF_COFFEE};
-        Cursor cursor = db.query(HabitEntry.TABLE_NAME, projection,
-                null,
-                null,
-                null,
-                null,
-                null);
+        Cursor cursor = readHabit();
         TextView displayView = (TextView) findViewById(R.id.textView);
         try {
             displayView.setText("The pets table contains " + cursor.getCount() + " pets.\n\n");
-            displayView.append ('\n'+HabitEntry._ID+"  -  "+
+            displayView.append('\n' + HabitEntry._ID + "  -  " +
                     HabitEntry.MORNING_EXERCISE + "  -  " +
-                            HabitEntry.MEDITATION + "  -  " +
-                            HabitEntry.GLASS_OF_WATER + "  -  " +
-                            HabitEntry.CUPS_OF_COFFEE
+                    HabitEntry.MEDITATION + "  -  " +
+                    HabitEntry.GLASS_OF_WATER + "  -  " +
+                    HabitEntry.CUPS_OF_COFFEE
 
             );
             // Figure out the index of each column
@@ -87,24 +75,24 @@ public class MainActivity extends AppCompatActivity {
             int moringColumnIndex = cursor.getColumnIndex(HabitEntry.MORNING_EXERCISE);
             int coffeeColumnINdex = cursor.getColumnIndex(HabitEntry.CUPS_OF_COFFEE);
             int glassofwater = cursor.getColumnIndex(HabitEntry.GLASS_OF_WATER);
-            Log.i("idcolumn",String.valueOf(idColumnIndex));
-            Log.i("MEditationcolumn",String.valueOf(meditationColumnIndex));
-            Log.i("morning",String.valueOf(moringColumnIndex));
+            Log.i("idcolumn", String.valueOf(idColumnIndex));
+            Log.i("MEditationcolumn", String.valueOf(meditationColumnIndex));
+            Log.i("morning", String.valueOf(moringColumnIndex));
             // Iterate through all the returned rows in the cursor
-           while (cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
                 // Use that index to extract the String or Int value of the word
                 // at the current row the cursor is on.
                 int currentID = cursor.getInt(idColumnIndex);
                 String currentName = cursor.getString(meditationColumnIndex);
-               String morningWalk = cursor.getString(moringColumnIndex);
+                String morningWalk = cursor.getString(moringColumnIndex);
                 int coffee = cursor.getInt(coffeeColumnINdex);
                 int glassofWater = cursor.getInt(glassofwater);
 
-              //  Log.i("current ID", String.valueOf(currentID));
+                //  Log.i("current ID", String.valueOf(currentID));
 
 
                 // Display the values from each column of the current row in the cursor in the TextView
-                displayView.append(("\n" +"  "+currentID+"       "+
+                displayView.append(("\n" + "  " + currentID + "       " +
                         currentName + "                         " +
                         morningWalk + "             " +
                         coffee + "                " +
@@ -118,9 +106,23 @@ public class MainActivity extends AppCompatActivity {
         } finally {
             cursor.close();
         }
+
     }
 
-
+    public Cursor readHabit() {
+        SQLiteDatabase db = mHabitHelper.getReadableDatabase();
+        String[] projection = {HabitEntry._ID, HabitEntry.MORNING_EXERCISE,
+                HabitEntry.MEDITATION,
+                HabitEntry.GLASS_OF_WATER,
+                HabitEntry.CUPS_OF_COFFEE};
+        Cursor cursor = db.query(HabitEntry.TABLE_NAME, projection,
+                null,
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+    }
 
 
     @Override
