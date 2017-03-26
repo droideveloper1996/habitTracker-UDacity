@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import scorecard.project.com.githabittracker.data.HabitContract.HabitEntry;
@@ -18,13 +17,7 @@ import static scorecard.project.com.githabittracker.R.id.brush;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText morning_exercise;
-    private EditText glass_of_water;
-    private EditText newspaper;
-    private EditText brush_teeth;
-    private EditText lights;
-    private EditText meditation;
-    private EditText cups_of_coffee;
+
     private HabitHelper mHabitHelper;
 
     @Override
@@ -81,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             displayView.append(HabitEntry._ID + " - " +
                     HabitEntry.MORNING_EXERCISE + " - " +
                     HabitEntry.MEDITATION + " - " +
-                    HabitEntry.GLASS_OF_WATER +" - "+
+                    HabitEntry.GLASS_OF_WATER + " - " +
                     HabitEntry.CUPS_OF_COFFEE
 
             );
@@ -89,8 +82,6 @@ public class MainActivity extends AppCompatActivity {
             int idColumnIndex = cursor.getColumnIndex(HabitEntry._ID);
             int meditationColumnIndex = cursor.getColumnIndex(HabitEntry.MEDITATION);
             int moringColumnIndex = cursor.getColumnIndex(HabitEntry.MORNING_EXERCISE);
-
-
             int coffeeColumnINdex = cursor.getColumnIndex(HabitEntry.CUPS_OF_COFFEE);
             int glassofwater = cursor.getColumnIndex(HabitEntry.GLASS_OF_WATER);
 
