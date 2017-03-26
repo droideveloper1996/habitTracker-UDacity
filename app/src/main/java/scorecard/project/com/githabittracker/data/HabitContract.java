@@ -19,10 +19,8 @@ public final class HabitContract {
         public final static String MORNING_EXERCISE = "Morning_Walk";
         public final static String CUPS_OF_COFFEE = "Coffee_cups";
         public final static String GLASS_OF_WATER = "GLASES_OF_WATER";
-        public final static String TURN_LIGHT = "Lights";
         public final static String MEDITATION = "MEditation";
-        public final static String NEWSPAPER = "NewsPaper";
-        public final static String BRUSH_TEETH = "BRUSH_TEETH";
+
 
 
 

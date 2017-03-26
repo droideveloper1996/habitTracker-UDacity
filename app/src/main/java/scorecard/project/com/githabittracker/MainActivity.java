@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         values.put(HabitEntry.MEDITATION, "DONE");
         values.put(HabitEntry.MORNING_EXERCISE, "DONE");
         values.put(HabitEntry.GLASS_OF_WATER, 7);
-        values.put(HabitEntry.CUPS_OF_COFFEE, 0);
+        values.put(HabitEntry.CUPS_OF_COFFEE, 1);
 
 
         long row = db.insert(HabitEntry.TABLE_NAME, null, values);
